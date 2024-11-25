@@ -9,6 +9,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared-kernel", "shared-ker
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SharedKernel", "contexts\shared-kernel\HemoSys.SharedKernel\HemoSys.SharedKernel.csproj", "{2481D3B4-56EA-4C4D-994A-F762584479FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.BrokerMessage", "contexts\shared-kernel\HemoSys.BrokerMessage\HemoSys.BrokerMessage.csproj", "{58B90014-06BB-4BBD-86D2-974040915E82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "donation-management", "donation-management", "{872CCEC2-E4A8-4B72-BC50-77635210D650}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ms-scheduling", "ms-scheduling", "{2FB04620-D4A6-42B1-95C2-7321A640FFC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "adapters", "adapters", "{ED64C6F7-7755-489A-94EC-66412F6CB793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Api", "contexts\donation-management\ms-scheduling\adapters\HemoSys.SchedulingService.Api\HemoSys.SchedulingService.Api.csproj", "{E4DC336A-132D-4B2D-913A-33483BFB3010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.State", "contexts\donation-management\ms-scheduling\adapters\HemoSys.SchedulingService.State\HemoSys.SchedulingService.State.csproj", "{9B1B3F06-1112-4BA7-B68B-691AF6BE7799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Stream", "contexts\donation-management\ms-scheduling\adapters\HemoSys.SchedulingService.Stream\HemoSys.SchedulingService.Stream.csproj", "{3CB1D8A9-CC8A-4D95-8867-F8B213200229}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{9AFD3395-EA3B-427B-B629-45490E832D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Application", "contexts\donation-management\ms-scheduling\core\HemoSys.SchedulingService.Application\HemoSys.SchedulingService.Application.csproj", "{35D21783-C56F-4984-BFB8-767F8B65FA85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Domain", "contexts\donation-management\ms-scheduling\core\HemoSys.SchedulingService.Domain\HemoSys.SchedulingService.Domain.csproj", "{584E11A0-5012-4067-A9FA-99D37A6C6223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +42,43 @@ Global
 		{2481D3B4-56EA-4C4D-994A-F762584479FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2481D3B4-56EA-4C4D-994A-F762584479FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2481D3B4-56EA-4C4D-994A-F762584479FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B90014-06BB-4BBD-86D2-974040915E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B90014-06BB-4BBD-86D2-974040915E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B90014-06BB-4BBD-86D2-974040915E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B90014-06BB-4BBD-86D2-974040915E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DC336A-132D-4B2D-913A-33483BFB3010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DC336A-132D-4B2D-913A-33483BFB3010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DC336A-132D-4B2D-913A-33483BFB3010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DC336A-132D-4B2D-913A-33483BFB3010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B1B3F06-1112-4BA7-B68B-691AF6BE7799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B1B3F06-1112-4BA7-B68B-691AF6BE7799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B1B3F06-1112-4BA7-B68B-691AF6BE7799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B1B3F06-1112-4BA7-B68B-691AF6BE7799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB1D8A9-CC8A-4D95-8867-F8B213200229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB1D8A9-CC8A-4D95-8867-F8B213200229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB1D8A9-CC8A-4D95-8867-F8B213200229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB1D8A9-CC8A-4D95-8867-F8B213200229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D21783-C56F-4984-BFB8-767F8B65FA85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D21783-C56F-4984-BFB8-767F8B65FA85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D21783-C56F-4984-BFB8-767F8B65FA85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D21783-C56F-4984-BFB8-767F8B65FA85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B7457C4-F6DB-4E57-AEF5-48D462E7A803} = {CB2E7CC5-50A9-476E-A896-C0CBF607C235}
 		{2481D3B4-56EA-4C4D-994A-F762584479FD} = {8B7457C4-F6DB-4E57-AEF5-48D462E7A803}
+		{58B90014-06BB-4BBD-86D2-974040915E82} = {8B7457C4-F6DB-4E57-AEF5-48D462E7A803}
+		{872CCEC2-E4A8-4B72-BC50-77635210D650} = {CB2E7CC5-50A9-476E-A896-C0CBF607C235}
+		{2FB04620-D4A6-42B1-95C2-7321A640FFC5} = {872CCEC2-E4A8-4B72-BC50-77635210D650}
+		{ED64C6F7-7755-489A-94EC-66412F6CB793} = {2FB04620-D4A6-42B1-95C2-7321A640FFC5}
+		{E4DC336A-132D-4B2D-913A-33483BFB3010} = {ED64C6F7-7755-489A-94EC-66412F6CB793}
+		{9B1B3F06-1112-4BA7-B68B-691AF6BE7799} = {ED64C6F7-7755-489A-94EC-66412F6CB793}
+		{3CB1D8A9-CC8A-4D95-8867-F8B213200229} = {ED64C6F7-7755-489A-94EC-66412F6CB793}
+		{9AFD3395-EA3B-427B-B629-45490E832D69} = {2FB04620-D4A6-42B1-95C2-7321A640FFC5}
+		{35D21783-C56F-4984-BFB8-767F8B65FA85} = {9AFD3395-EA3B-427B-B629-45490E832D69}
+		{584E11A0-5012-4067-A9FA-99D37A6C6223} = {9AFD3395-EA3B-427B-B629-45490E832D69}
 	EndGlobalSection
 EndGlobal
