@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Domain", "contexts\donation-management\ms-scheduling\core\HemoSys.SchedulingService.Domain\HemoSys.SchedulingService.Domain.csproj", "{584E11A0-5012-4067-A9FA-99D37A6C6223}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Tests", "contexts\donation-management\ms-scheduling\tests\HemoSys.SchedulingService.Tests\HemoSys.SchedulingService.Tests.csproj", "{B3888722-52D3-4665-A15F-32C57686262E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DE4E119F-B1CD-4239-AE94-D0B3126AFB4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,10 @@ Global
 		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{584E11A0-5012-4067-A9FA-99D37A6C6223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3888722-52D3-4665-A15F-32C57686262E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3888722-52D3-4665-A15F-32C57686262E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3888722-52D3-4665-A15F-32C57686262E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3888722-52D3-4665-A15F-32C57686262E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B7457C4-F6DB-4E57-AEF5-48D462E7A803} = {CB2E7CC5-50A9-476E-A896-C0CBF607C235}
@@ -80,5 +88,7 @@ Global
 		{9AFD3395-EA3B-427B-B629-45490E832D69} = {2FB04620-D4A6-42B1-95C2-7321A640FFC5}
 		{35D21783-C56F-4984-BFB8-767F8B65FA85} = {9AFD3395-EA3B-427B-B629-45490E832D69}
 		{584E11A0-5012-4067-A9FA-99D37A6C6223} = {9AFD3395-EA3B-427B-B629-45490E832D69}
+		{DE4E119F-B1CD-4239-AE94-D0B3126AFB4A} = {2FB04620-D4A6-42B1-95C2-7321A640FFC5}
+		{B3888722-52D3-4665-A15F-32C57686262E} = {DE4E119F-B1CD-4239-AE94-D0B3126AFB4A}
 	EndGlobalSection
 EndGlobal
