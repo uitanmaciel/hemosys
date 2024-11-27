@@ -37,8 +37,8 @@ public sealed class Appointment : AggregateRoot
     public void Complete() => StatusTypes = AppointmentStatusTypes.Completed;
     
     public void Cancel() => StatusTypes = AppointmentStatusTypes.Canceled;
-    
-    private int CalculateDaysSinceLastDonation()
+
+    public int CalculateDaysSinceLastDonation()
     {
         var lastDonation = Appointments
             .Where(a => a.Donor.Id == Donor.Id)
@@ -53,7 +53,9 @@ public sealed class Appointment : AggregateRoot
     {
         if(ScheduledDate < DateTime.Now)
             AddNotification("ScheduledDate", "The scheduled date must be greater than the current date.");
-
+        
+        var controlDays = CalculateDaysSinceLastDonation();
+        
         switch (Donor.Gender)
         {
             case "Female" when CalculateDaysSinceLastDonation() < 90:
