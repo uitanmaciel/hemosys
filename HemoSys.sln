@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SharedKernel", "sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SharedKernel.Messaging", "shared-kernel\HemoSys.SharedKernel.Messaging\HemoSys.SharedKernel.Messaging.csproj", "{2167BAAA-99AC-43B9-8D0B-46B9FE0C207E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{94536FF7-8745-49DB-9278-FEA4F3EFCC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SchedulingService.Tests", "contexts\donation-management\ms-scheduling\tests\HemoSys.SchedulingService.Tests\HemoSys.SchedulingService.Tests.csproj", "{787DA8DB-CB59-47D9-81C6-B41421B100F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +76,10 @@ Global
 		{2167BAAA-99AC-43B9-8D0B-46B9FE0C207E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2167BAAA-99AC-43B9-8D0B-46B9FE0C207E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2167BAAA-99AC-43B9-8D0B-46B9FE0C207E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787DA8DB-CB59-47D9-81C6-B41421B100F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787DA8DB-CB59-47D9-81C6-B41421B100F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787DA8DB-CB59-47D9-81C6-B41421B100F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787DA8DB-CB59-47D9-81C6-B41421B100F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AD2C6EFE-9CE3-46F8-8E5A-D213A73F40D7} = {9E580983-2AA1-4F1E-8ABE-22F29E156B96}
@@ -86,5 +94,7 @@ Global
 		{24DD4ACC-7494-46D0-B888-983100A63829} = {01C3C9CD-1428-4C7F-9B3C-ED2922786782}
 		{288F1151-2116-42FE-8225-5E7902E5D59F} = {DB212D81-41C9-43D9-BE1B-0911539F9B9B}
 		{2167BAAA-99AC-43B9-8D0B-46B9FE0C207E} = {DB212D81-41C9-43D9-BE1B-0911539F9B9B}
+		{94536FF7-8745-49DB-9278-FEA4F3EFCC6B} = {01C3C9CD-1428-4C7F-9B3C-ED2922786782}
+		{787DA8DB-CB59-47D9-81C6-B41421B100F2} = {94536FF7-8745-49DB-9278-FEA4F3EFCC6B}
 	EndGlobalSection
 EndGlobal
