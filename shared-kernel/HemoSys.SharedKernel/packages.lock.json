@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net9.0": {
+      "DevSource.Stack.Notifications": {
+        "type": "Direct",
+        "requested": "[1.0.9, )",
+        "resolved": "1.0.9",
+        "contentHash": "qpGG2Cgr6HpeFvKNXTf6+iib68Vmcfz8bUhswKjs/stbEFET17MX7Fnv9NlKsnvRcj5eld3xMrk7h8NU0J0HZg=="
+      },
+      "Microsoft.AspNetCore.OpenApi": {
+        "type": "Direct",
+        "requested": "[9.0.0, )",
+        "resolved": "9.0.0",
+        "contentHash": "FqUK5j1EOPNuFT7IafltZQ3cakqhSwVzH5ZW1MhZDe4pPXs9sJ2M5jom1Omsu+mwF2tNKKlRAzLRHQTZzbd+6Q==",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        }
+      },
+      "Microsoft.OpenApi": {
+        "type": "Transitive",
+        "resolved": "1.6.17",
+        "contentHash": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA=="
+      }
+    }
+  }
+}
