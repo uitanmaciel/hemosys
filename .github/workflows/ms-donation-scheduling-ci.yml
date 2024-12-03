@@ -6,12 +6,6 @@ on:
       - dev  
     paths:
       - 'contexts/donation-management/ms-scheduling/**'
-      
-  pull_request:
-    branches:
-      - dev
-    paths:
-      - 'contexts/donation-management/ms-scheduling/**'
         
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
