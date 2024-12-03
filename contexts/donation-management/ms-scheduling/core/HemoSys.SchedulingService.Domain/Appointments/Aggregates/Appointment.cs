@@ -32,7 +32,7 @@ public sealed class Appointment : AggregateRoot
         Notes = notes;
     }
     
-    public void ApplyRuleToSchedule()
+    public void ApplyRulesToCreateAppointment()
     {
         Validations();
         if(HasNotifications) return;

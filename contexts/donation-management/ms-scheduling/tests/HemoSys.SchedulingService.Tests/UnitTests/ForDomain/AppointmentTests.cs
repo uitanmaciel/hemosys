@@ -32,7 +32,7 @@ public class AppointmentTests
             scheduleDate: DateTime.Now.AddDays(-1));
         
         // Act
-        appointment.ApplyRuleToSchedule();
+        appointment.ApplyRulesToCreateAppointment();
         
         // Assert
         Assert.True(appointment.HasNotifications);
@@ -53,7 +53,7 @@ public class AppointmentTests
             status: AppointmentStatusTypes.Completed);
 
         // Act
-        appointment.ApplyRuleToSchedule();
+        appointment.ApplyRulesToCreateAppointment();
 
         // Assert
         Assert.True(appointment.HasNotifications);

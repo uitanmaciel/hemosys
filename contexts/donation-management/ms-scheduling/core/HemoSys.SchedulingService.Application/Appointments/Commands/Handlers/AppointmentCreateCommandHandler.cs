@@ -6,7 +6,7 @@ public class AppointmentCreateCommandHandler(IAppointmentWriteRepository reposit
     public async Task<bool> Handle(AppointmentCreateCommand request, CancellationToken cancellationToken)
     {
         var appointment = request.ToDomain(request);
-        appointment.ApplyRuleToSchedule();
+        appointment.ApplyRulesToCreateAppointment();
 
         var appointmentCreate = await repository.AddAsync(appointment, cancellationToken);
         if(!appointmentCreate)
