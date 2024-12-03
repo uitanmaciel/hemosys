@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - dev  
+    paths:
+      - 'contexts/donation-management/ms-scheduling/**'
+      
+  pull_request:
+    branches:
+      - dev
+    paths:
+      - 'contexts/donation-management/ms-scheduling/**'
         
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,7 +25,7 @@ jobs:
       contents: write
     defaults:
       run:
-        working-directory: ./contexts/donation-management/ms-scheduling
+        working-directory: contexts/donation-management/ms-scheduling
 
     outputs: 
       version: ${{ steps.version.outputs.version }}
@@ -64,7 +72,7 @@ jobs:
     name: Build and Tests
     defaults:
       run:
-        working-directory: ./contexts/donation-management/ms-scheduling
+        working-directory: contexts/donation-management/ms-scheduling
     
     steps:
       - name: Checkout Code
@@ -78,10 +86,10 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
           
       - name: Restore
-        run: dotnet restore ./contexts/donation-management/ms-scheduling/HemoSys.SchedulingService.Domain.csproj
+        run: dotnet restore contexts/donation-management/ms-scheduling/HemoSys.SchedulingService.Domain.csproj
         
       - name: Build
-        run: dotnet build --no-restore --configuration Release ./contexts/donation-management/ms-scheduling/HemoSys.SchedulingService.Domain.csproj
+        run: dotnet build --no-restore --configuration Release contexts/donation-management/ms-scheduling/HemoSys.SchedulingService.Domain.csproj
         
       - name: Test
         run: |
@@ -117,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./contexts/donation-management/ms-scheduling
+        working-directory: contexts/donation-management/ms-scheduling
     
     env:
       version: ${{ needs.versioning.outputs.version }}
