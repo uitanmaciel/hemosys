@@ -38,6 +38,7 @@ public sealed class Appointment : AggregateRoot
         if(HasNotifications) return;
         Id = Guid.CreateVersion7(DateTimeOffset.UtcNow);
         StatusTypes = AppointmentStatusTypes.Scheduled;
+        LastAppointment = ScheduledDate;
     }
     
     public void Complete() => StatusTypes = AppointmentStatusTypes.Completed;
