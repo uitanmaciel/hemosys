@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared-kernel\HemoSys.SharedKernel.Messaging\HemoSys.SharedKernel.Messaging.csproj" />
+    <ProjectReference Include="..\..\..\..\shared-kernel\HemoSys.SharedKernel\HemoSys.SharedKernel.csproj" />
+    <ProjectReference Include="..\adapters\HemoSys.SchedulingService.State\HemoSys.SchedulingService.State.csproj" />
+    <ProjectReference Include="..\adapters\HemoSys.SchedulingService.Stream\HemoSys.SchedulingService.Stream.csproj" />
+    <ProjectReference Include="..\adapters\HemoSys.SchedulingService.Web\HemoSys.SchedulingService.Web.csproj" />
+    <ProjectReference Include="..\core\HemoSys.SchedulingService.Application\HemoSys.SchedulingService.Application.csproj" />
+    <ProjectReference Include="..\core\HemoSys.SchedulingService.Domain\HemoSys.SchedulingService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
