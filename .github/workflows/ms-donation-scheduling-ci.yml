@@ -80,10 +80,10 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
           
       - name: Restore
-        run: dotnet restore ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
+        run: dotnet restore ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application
         
       - name: Build
-        run: dotnet build --no-restore --configuration Release ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
+        run: dotnet build --no-restore --configuration Release ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application
         
       - name: Test
         run: |
