@@ -1,0 +1,11 @@
+﻿global using HemoSys.SchedulingService.Domain.Appointments.Aggregates;
+global using MediatR;
+global using HemoSys.SharedKernel.State;
+global using HemoSys.SchedulingService.Application.Appointments.Commands.Models;
+global using HemoSys.SchedulingService.Domain.Appointments.ValueObjects;
+global using HemoSys.SchedulingService.Domain.Appointments.Entities;
+global using HemoSys.SchedulingService.Application.Appointments.Events.Models;
+global using HemoSys.SchedulingService.Application.Appointments.Interfaces.Adapters.State;
+global using HemoSys.SchedulingService.Application.Appointments.Commands.Models.Abstracts;
+global using HemoSys.SharedKernel;
+global using HemoSys.SchedulingService.Application.Appointments.Enums;
