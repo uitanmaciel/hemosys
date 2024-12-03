@@ -19,7 +19,7 @@ jobs:
       contents: write
     defaults:
       run:
-        working-directory: contexts/donation-management/ms-scheduling
+        working-directory: ./contexts/donation-management/ms-scheduling
 
     outputs: 
       version: ${{ steps.version.outputs.version }}
@@ -66,7 +66,7 @@ jobs:
     name: Build and Tests
     defaults:
       run:
-        working-directory: contexts/donation-management/ms-scheduling
+        working-directory: ./contexts/donation-management/ms-scheduling
     
     steps:
       - name: Checkout Code
@@ -80,10 +80,10 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
           
       - name: Restore
-        run: dotnet restore contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
+        run: dotnet restore ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
         
       - name: Build
-        run: dotnet build --no-restore --configuration Release contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
+        run: dotnet build --no-restore --configuration Release ./contexts/donation-management/ms-scheduling/core/HemoSys.SchedulingService.Application/HemoSys.SchedulingService.Application.csproj
         
       - name: Test
         run: |
@@ -119,7 +119,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: contexts/donation-management/ms-scheduling
+        working-directory: ./contexts/donation-management/ms-scheduling
     
     env:
       version: ${{ needs.versioning.outputs.version }}
