@@ -80,12 +80,10 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
           
       - name: Restore
-        inputs:
-          command: 'restore'
-          projects: '**/App.csproj'
+        run: dotnet restore **/App/*.csproj
         
       - name: Build
-        run: dotnet build --no-restore --configuration Release ./contexts/donation-management/ms-scheduling/App/App.csproj
+        run: dotnet build --no-restore --configuration Release **/App/*.csproj
         
       - name: Test
         run: |
