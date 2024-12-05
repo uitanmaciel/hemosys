@@ -34,11 +34,17 @@ public sealed class Appointment : AggregateRoot
     
     public void ApplyRulesToCreateAppointment()
     {
-        Validations();
+        ValidationsForCreateAppointment();
         if(HasNotifications) return;
         Id = Guid.CreateVersion7(DateTimeOffset.UtcNow);
         StatusTypes = AppointmentStatusTypes.Scheduled;
         LastAppointment = ScheduledDate;
+    }
+    
+    public void ApplyRulesToUpdateAppointment()
+    {
+        ValidationsForUpdateAppointment();
+        if(HasNotifications) return;
     }
     
     public void Complete() => StatusTypes = AppointmentStatusTypes.Completed;
@@ -51,7 +57,7 @@ public sealed class Appointment : AggregateRoot
         return days;
     }
 
-    private void Validations()
+    private void ValidationsForCreateAppointment()
     {
         if(ScheduledDate < DateTime.Now)
             AddNotification("ScheduledDate", "The scheduled date must be greater than the current date.");
@@ -66,6 +72,23 @@ public sealed class Appointment : AggregateRoot
                 break;
         }
         
+        ValidationsInherit();
+    }
+
+    private void ValidationsForUpdateAppointment()
+    {
+        AddNotifications(new ValidationRules<Appointment>()
+            .IsGuidNotEmpty(nameof(Id), Id)
+        );
+        
+        if(StatusTypes == AppointmentStatusTypes.Completed)
+            AddNotification("Status", "The appointment is already completed.");
+        
+        ValidationsInherit();
+    }
+
+    private void ValidationsInherit()
+    {
         AddNotifications(Donor.Notifications);
         AddNotifications(Location.Notifications);
     }
