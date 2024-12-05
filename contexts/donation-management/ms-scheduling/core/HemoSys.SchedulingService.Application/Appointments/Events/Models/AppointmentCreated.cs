@@ -2,13 +2,13 @@
 
 public class AppointmentCreated : IRequest
 {
-    public string Donor { get; set; } 
-    public string? Location { get; set; } 
-    public DateTime ScheduledDate { get; set; }
-    public AppointmentStatusTypes StatusTypes { get; set; }
-    private string Destination => string.Concat("appointment.", StatusTypes.ToString().ToLower());
+    private const string Destination = "schedulingevents";
     private string EventType => string.Concat("appointment.", StatusTypes.ToString().ToLower());
-    
+    private string Donor { get; set; }
+    private string? Location { get; set; }
+    private DateTime ScheduledDate { get; set; }
+    private AppointmentStatusTypes StatusTypes { get; set; }
+
     public AppointmentCreated(Appointment appointment)
     {
         Donor = appointment.Donor.Name;
@@ -17,7 +17,7 @@ public class AppointmentCreated : IRequest
         StatusTypes = (AppointmentStatusTypes)appointment.StatusTypes;
     }
     
-    public (string destination, string eventType, AppointmentCreated message) ToMessage()
+    public (string destination, string eventType, object message) ToMessage()
     {
         return (Destination, EventType, this);
     }
