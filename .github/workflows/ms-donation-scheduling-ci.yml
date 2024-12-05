@@ -110,9 +110,8 @@ jobs:
       - name: Tag Publish Vesion
         uses: restackio/update-json-file-action@2.1
         with:
-          file-path: './publish/appsettings.json'
-          key: 'Version'
-          value: ${{ needs.versioning.outputs.version }}
+          file: './publish/appsettings.json'
+          fields: '{"Version": "${{ needs.versioning.outputs.version }}"}'
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
