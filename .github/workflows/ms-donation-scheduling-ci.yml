@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Test - MS Scheduling
 
 on:
   push:
@@ -79,11 +79,18 @@ jobs:
           cache: true
           cache-dependency-path: '**/packages.lock.json'
           
+      - name: Verify Project Path
+        run: |
+          if [ ! -f "./App/App.csproj" ]; then
+            echo "No project found at ./contexts/donation-management/ms-scheduling/App/ms-scheduling.csproj"
+            exit 1
+          fi            
+          
       - name: Restore
-        run: dotnet restore **/App/*.csproj
+        run: dotnet restore App/App.csproj
         
       - name: Build
-        run: dotnet build --no-restore --configuration Release **/App/*.csproj
+        run: dotnet build --no-restore --configuration Release App/App.csproj
         
       - name: Test
         run: |
