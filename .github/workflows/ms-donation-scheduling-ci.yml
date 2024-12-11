@@ -34,7 +34,7 @@ jobs:
       - uses: codacy/git-version@2.8.0
         id: version
         with:
-          release-branch: main
+          release-branch: dev
           prefix: v
           
       - name: Tag Repository
@@ -46,19 +46,19 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git tag -a ${{ steps.version.outputs.version }} -m "Release ${{ steps.version.outputs.version }}"
           git push --tags
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
       
       - name: Create file version
         run: |
           echo ${{ steps.version.outputs.version }} > version.txt
           echo "::set-output name=version::${{ steps.version.outputs.version }}"
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         
       - uses: actions/upload-artifact@v4
         with:
           name: version
           path: version.txt
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         
   build-and-tests:
     needs: versioning
@@ -79,13 +79,6 @@ jobs:
           cache: true
           cache-dependency-path: '**/packages.lock.json'
           
-      - name: Verify Project Path
-        run: |
-          if [ ! -f "./App/App.csproj" ]; then
-            echo "No project found at ./contexts/donation-management/ms-scheduling/App/ms-scheduling.csproj"
-            exit 1
-          fi            
-          
       - name: Restore
         run: dotnet restore App/App.csproj
         
@@ -94,70 +87,11 @@ jobs:
         
       - name: Test
         run: |
-          dotnet test --no-build --no-restore --configuration Release tests/HemoSys.SchedulingService.Tests/HemoSys.SchedulingService.Tests.csproj --logger trx --results-directory "tests-results"
-        if: github.ref != 'refs/heads/main'
+          dotnet --no-restore --no-build test tests/HemoSys.SchedulingService.Tests/HemoSys.SchedulingService.Tests.csproj --configuration Release  --logger trx --results-directory "tests-results"
+        if: github.ref != 'refs/heads/dev'
         
       - uses: actions/upload-artifact@v4
         with:
-          name: dotnet-tests-results
+          name: ms-scheduling-tests-results
           path: tests-results
-        if: github.ref != 'refs/heads/main'
-        
-      - name: Publish
-        run: dotnet publish --no-build --no-restore --configuration Release --output ./publish
-        if: github.ref == 'refs/heads/main'
-        
-      - name: Copy appsettings.json
-        run: |
-          mkdir -p ./publish
-          cp ./App/appsettings.json ./publish/    
-      
-      - name: Tag Publish Vesion
-        uses: restackio/update-json-file-action@2.1
-        with:
-          file: './publish/appsettings.json'
-          fields: '{"Version": "${{ needs.versioning.outputs.version }}"}'
-        
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: API
-          path: ./publish
-    
-  build-docker-image:
-    name: Packing and Publish
-    needs: [ versioning, build-and-tests ]
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./contexts/donation-management/ms-scheduling
-    
-    env:
-      version: ${{ needs.versioning.outputs.version }}
-    
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          path: app
-          merge-multiple: false
-
-      - name: Build Docker Image
-        run: |
-          docker build -t ${{ vars.DOCKERHUB_REPOSITORY }}:${{ env.version }} .
-
-      - name: Tag Docker Image as Latest
-        run: |
-          docker tag ${{ vars.DOCKERHUB_REPOSITORY }}:${{ env.version }} ${{ vars.DOCKERHUB_REPOSITORY }}:latest
-        if: github.ref == 'refs/heads/main'
-
-      - name: Docker Login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Docker Push
-        run: |
-          docker push --all-tags uitanmaciel/hemosys-ms-scheduling
+        if: github.ref != 'refs/heads/dev'
