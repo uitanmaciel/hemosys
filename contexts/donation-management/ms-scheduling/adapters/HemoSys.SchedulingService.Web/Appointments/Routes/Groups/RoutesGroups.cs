@@ -12,9 +12,17 @@ public static class RoutesGroups
             .WithTags("Health Check")
             .MapGet("/health", async () => await Task.FromResult("OK"));
         
-        endpoints.MapGroup("api/v1/appointments")
+        endpoints.MapGroup("api/v1/appointment")
             .WithTags("Appointments")
             .MapEndpoint<AppointmentCreateEndpoint>();
+
+        endpoints.MapGroup("api/v1/appointment")
+            .WithTags("Appointments")
+            .MapEndpoint<AppointmentUpdateEndpoint>();
+
+        endpoints.MapGroup("api/v1/appointment")
+            .WithTags("Appointments")
+            .MapEndpoint<AppointmentDeleteEndpoint>();
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)

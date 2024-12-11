@@ -34,6 +34,7 @@ public sealed class Appointment : AggregateRoot
     
     public void ApplyRulesToCreateAppointment()
     {
+        Donor.Attach();
         ValidationsForCreateAppointment();
         if(HasNotifications) return;
         Id = Guid.CreateVersion7(DateTimeOffset.UtcNow);
@@ -43,7 +44,14 @@ public sealed class Appointment : AggregateRoot
     
     public void ApplyRulesToUpdateAppointment()
     {
+        Donor.Attach();
         ValidationsForUpdateAppointment();
+        if(HasNotifications) return;
+    }
+
+    public void ApplyRulesToDeleteAppointment()
+    {
+        ValidationsForDeleteAppointment();
         if(HasNotifications) return;
     }
     
@@ -60,15 +68,21 @@ public sealed class Appointment : AggregateRoot
     private void ValidationsForCreateAppointment()
     {
         if(ScheduledDate < DateTime.Now)
-            AddNotification("ScheduledDate", "The scheduled date must be greater than the current date.");
+            AddNotification(
+                key: "ScheduledDate", 
+                message: "The scheduled date must be greater than the current date.");
         
         switch (Donor.Gender)
         {
             case "Female" when CalculateDaysSinceLastDonation() < 90:
-                AddNotification("Donor", "Womens can only donate every 90 days.");
+                AddNotification(
+                    key: "Donor", 
+                    message: "Womens can only donate every 90 days.");
                 break;
             case "Male" when CalculateDaysSinceLastDonation() < 60:
-                AddNotification("Donor","Mens can only donate every 60 days.");
+                AddNotification(
+                    key: "Donor",
+                    message: "Mens can only donate every 60 days.");
                 break;
         }
         
@@ -82,13 +96,24 @@ public sealed class Appointment : AggregateRoot
         );
         
         if(StatusTypes == AppointmentStatusTypes.Completed)
-            AddNotification("Status", "The appointment is already completed.");
+            AddNotification(
+                key: "Status", 
+                message: "The appointment is already completed.");
         
         ValidationsInherit();
+    }
+    
+    private void ValidationsForDeleteAppointment()
+    {
+        if(StatusTypes is AppointmentStatusTypes.Canceled or AppointmentStatusTypes.Completed)
+            AddNotification(
+                key: "Status", 
+                message: "The appointment is already canceled.");
     }
 
     private void ValidationsInherit()
     {
+        Donor.Attach();
         AddNotifications(Donor.Notifications);
         AddNotifications(Location.Notifications);
     }

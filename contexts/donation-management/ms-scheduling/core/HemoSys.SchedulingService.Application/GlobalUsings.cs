@@ -9,3 +9,4 @@ global using HemoSys.SchedulingService.Application.Appointments.Interfaces.Adapt
 global using HemoSys.SchedulingService.Application.Appointments.Commands.Models.Abstracts;
 global using HemoSys.SharedKernel;
 global using HemoSys.SchedulingService.Application.Appointments.Enums;
+global using DevSource.Stack.Notifications;

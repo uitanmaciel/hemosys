@@ -1,9 +1,4 @@
-﻿using DevSource.Stack.Results;
-using DevSource.Stack.Results.StatusCodeTypes;
-using HemoSys.SchedulingService.Application.Appointments.Commands.Interfaces;
-using HemoSys.SchedulingService.Web.Appointments.Requests;
-
-namespace HemoSys.SchedulingService.Web.Appointments.Routes.Endpoints;
+﻿namespace HemoSys.SchedulingService.Web.Appointments.Routes.Endpoints;
 
 public class AppointmentCreateEndpoint : IEndpoint
 {

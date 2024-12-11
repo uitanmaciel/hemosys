@@ -8,8 +8,6 @@ public class DonorCommand
     public double Weight { get; set; }
     public string Gender { get; set; } = null!;
     public DateTime BirthDate { get; set; }
-    
-    public DonorCommand() { }
 
     public Donor ToDomain(DonorCommand? command)
     {

@@ -1,9 +1,9 @@
-﻿namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
+﻿using HemoSys.SchedulingService.Application.Appointments.Events.Models.Abstractions;
 
-public class AppointmentCreated : IRequest
+namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
+
+public record AppointmentCreated : Event, IRequest
 {
-    private const string Destination = "schedulingevents";
-    private string EventType => string.Concat("appointment.", StatusTypes.ToString().ToLower());
     private string Donor { get; set; }
     private string? Location { get; set; }
     private DateTime ScheduledDate { get; set; }
@@ -19,6 +19,6 @@ public class AppointmentCreated : IRequest
     
     public (string destination, string eventType, object message) ToMessage()
     {
-        return (Destination, EventType, this);
+        return (GetDestination(), GetEventType(EventType.Created), this);
     }
 }

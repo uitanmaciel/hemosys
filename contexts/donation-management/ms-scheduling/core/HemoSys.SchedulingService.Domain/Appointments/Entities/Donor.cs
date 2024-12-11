@@ -17,7 +17,12 @@ public sealed class Donor : Entity
         Weight = weight;
         Gender = gender;
         BirthDate = birthDate;
+    }
+
+    public Donor Attach()
+    {
         Validations();
+        return HasNotifications ? new Donor() : this;
     }
     
     private int CalculateAge()
