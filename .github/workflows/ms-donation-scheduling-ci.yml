@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   versioning:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Versioning
     permissions:
       contents: write
@@ -56,13 +56,13 @@ jobs:
         
       - uses: actions/upload-artifact@v4
         with:
-          name: version
-          path: version.txt
+          name: ms-scheduling-version
+          path: ms-scheduling/version.txt
         if: github.ref == 'refs/heads/dev'
         
   build-and-tests:
     needs: versioning
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Build and Tests
     defaults:
       run:
