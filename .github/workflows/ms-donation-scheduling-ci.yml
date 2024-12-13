@@ -93,5 +93,63 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ms-scheduling-tests-results
-          path: tests-results
+          path: ms-scheduling/tests/tests-results
         if: github.ref != 'refs/heads/dev'
+        
+  lint-check:
+    needs: versioning
+    runs-on: ubuntu-22.04
+    name: Lint Check
+    defaults:
+      run:
+        working-directory: ./contexts/donation-management/ms-scheduling
+        
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
+          
+      - uses: github/super-linter@v4
+        with:
+          DEFAULT_BRANCH: dev
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_YAML: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: github.ref != 'refs/heads/dev'
+      
+  code-security-check:
+    needs: versioning
+    runs-on: ubuntu-22.04
+    name: Code Security Check
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    defaults:
+      run:
+        working-directory: ./contexts/donation-management/ms-scheduling
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
+          
+      - uses: github/codeql-action/init@v3
+        name: Initialize CodeQL - ${{ matrix.name }}
+        with:
+          languages: ${{ matrix.language }}
+          build: ${{ matrix.build }}
+          
+      - uses: github/codeql-action/analyze@v3
+        name: Analyze with CodeQL - ${{ matrix.name }}
+        with:
+          languages: ${{ matrix.language }}
+          query: ${{ matrix.query }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: ${{ matrix.fail_on_error }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
