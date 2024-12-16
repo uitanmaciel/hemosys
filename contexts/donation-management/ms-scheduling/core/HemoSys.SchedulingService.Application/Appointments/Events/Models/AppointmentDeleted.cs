@@ -1,18 +1,7 @@
-﻿using HemoSys.SchedulingService.Application.Appointments.Events.Models.Abstractions;
+﻿namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
 
-namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
-
-public record AppointmentDeleted : Event, IRequest
+public class AppointmentDeleted(Appointment appointment) : IRequest
 {
-    private Guid Id { get; set; }
-    
-    public AppointmentDeleted(Guid id)
-    {
-        Id = id;
-    }
-    
-    public (string destination, string eventType, object message) ToMessage()
-    {
-        return (GetDestination(), GetEventType(EventType.Deleted), this);
-    }
+    public Guid Id { get; set; } = appointment.Id;
+    public string StatusTypes { get; set; } = AppointmentStatusTypes.Deleted.ToString();
 }

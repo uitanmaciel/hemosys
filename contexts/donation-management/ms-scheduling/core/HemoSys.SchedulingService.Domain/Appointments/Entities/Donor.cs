@@ -1,4 +1,6 @@
-﻿namespace HemoSys.SchedulingService.Domain.Appointments.Entities;
+﻿using HemoSys.SchedulingService.Domain.Appointments.Enums;
+
+namespace HemoSys.SchedulingService.Domain.Appointments.Entities;
 
 public sealed class Donor : Entity
 {
@@ -21,7 +23,7 @@ public sealed class Donor : Entity
 
     public Donor Attach()
     {
-        Validations();
+        ValidationsToCreate();
         return HasNotifications ? new Donor() : this;
     }
     
@@ -33,7 +35,7 @@ public sealed class Donor : Entity
         return age;
     }
 
-    private void Validations()
+    private void ValidationsToCreate()
     {
         AddNotifications(new ValidationRules<Donor>()
             .IsNotNullOrEmpty(nameof(Name), Name)

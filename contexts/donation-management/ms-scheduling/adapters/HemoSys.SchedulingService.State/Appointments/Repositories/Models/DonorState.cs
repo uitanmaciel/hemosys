@@ -5,10 +5,6 @@ namespace HemoSys.SchedulingService.State.Appointments.Repositories.Models;
 
 public class DonorState
 {
-    [BsonId]
-    [BsonElement("_id")]
-    public Guid _Id { get; set; }
-    
     [BsonElement("id")]
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }

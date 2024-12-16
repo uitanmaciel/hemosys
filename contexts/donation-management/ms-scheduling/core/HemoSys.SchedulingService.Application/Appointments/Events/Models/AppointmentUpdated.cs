@@ -1,24 +1,9 @@
-﻿using HemoSys.SchedulingService.Application.Appointments.Events.Models.Abstractions;
+﻿namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
 
-namespace HemoSys.SchedulingService.Application.Appointments.Events.Models;
-
-public record AppointmentUpdated : Event, IRequest
+public class AppointmentUpdated(Appointment appointment) : IRequest
 {
-    private Guid Id { get; set; }
-    private string? Location { get; set; } 
-    private DateTime ScheduledDate { get; set; }
-    private AppointmentStatusTypes StatusTypes { get; set; }
-    
-    public AppointmentUpdated(Appointment appointment)
-    {
-        Id = appointment.Id;
-        Location = string.Concat(appointment.Location.Name,": ",appointment.Location.Address.ToString());
-        ScheduledDate = appointment.ScheduledDate;
-        StatusTypes = (AppointmentStatusTypes)appointment.StatusTypes;
-    }
-    
-    public (string destination, string eventType, object message) ToMessage()
-    {
-        return (GetDestination(), GetEventType(EventType.Updated), this);
-    }
+    public Guid Id { get; set; } = appointment.Id;
+    public string? Location { get; set; } = appointment.Location.Address.ToString();
+    public DateTime ScheduledDate { get; set; } = appointment.ScheduledDate;
+    public AppointmentStatusTypes StatusTypes { get; set; } = (AppointmentStatusTypes)appointment.StatusTypes;
 }

@@ -8,6 +8,12 @@ public class AppointmentDeleteCommandHandler(IAppointmentWriteRepository reposit
         var appointment = request.ToDomain(request);
         appointment.ApplyRulesToDeleteAppointment();
         
+        if(appointment.HasNotifications)
+        {
+            request.AddNotifications(appointment.Notifications);
+            return false;
+        }
+        
         var appointmentDelete = await repository.DeleteAsync(appointment.Id, cancellationToken);
         if(!appointmentDelete)
         {
@@ -15,7 +21,7 @@ public class AppointmentDeleteCommandHandler(IAppointmentWriteRepository reposit
             return false;
         }
         
-        var appointmentDeleted = new AppointmentDeleted(appointment.Id);
+        var appointmentDeleted = new AppointmentDeleted(appointment);
         await mediator.Send(appointmentDeleted, cancellationToken);
         
         return true;

@@ -7,6 +7,12 @@ public class AppointmentUpdateCommandHandler(IAppointmentWriteRepository reposit
     {
         var appointment = request.ToDomain(request);
         appointment.ApplyRulesToUpdateAppointment();
+
+        if(appointment.HasNotifications)
+        {
+            request.AddNotifications(appointment.Notifications);
+            return false;
+        }
         
         var appointmentUpdate = await repository.UpdateAsync(appointment, cancellationToken);
         if(!appointmentUpdate)

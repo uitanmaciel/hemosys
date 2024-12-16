@@ -1,6 +1,6 @@
 ﻿namespace HemoSys.SchedulingService.Web.Appointments.Routes.Endpoints;
 
-public class AppointmentUpdateEndpoint : IEndpoint
+public abstract class AppointmentUpdateEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
@@ -13,7 +13,7 @@ public class AppointmentUpdateEndpoint : IEndpoint
                         .Select(x => x.Message)
                         .ToList());
             
-                var result = await service.UpdateAppointmentAsync(command, default);
+                var result = await service.UpdateAppointmentAsync(command, CancellationToken.None);
             
                 return !result 
                     ? Result.Failure("Failed to update appointment") 

@@ -6,10 +6,12 @@ public class AppointmentUpdatedEventHandler(IProducer producer) : IRequestHandle
 {
     public async Task Handle(AppointmentUpdated request, CancellationToken cancellationToken)
     {
-        var @event = request.ToMessage();
+        const string destination = "schedulingevents";
+        const string eventName = "AppointmentUpdated";
+        
         await producer.PublishAsync(
-            destination: @event.destination, 
-            eventName: @event.eventType, 
-            message: @event.message);
+            destination: destination, 
+            eventName: eventName, 
+            message: request);
     }
 }

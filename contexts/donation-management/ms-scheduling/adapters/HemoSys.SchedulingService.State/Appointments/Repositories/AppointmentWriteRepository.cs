@@ -26,6 +26,9 @@ public sealed class AppointmentWriteRepository(AppointmentDbContext context) : I
     public Task<bool> UpdateAsync(Appointment entity, CancellationToken cancellationToken)
     {
         var objectState = new AppointmentMapper().ToState(entity);
+        objectState._id = context.Appointments
+            .Find(x => x.Id == objectState.Id)
+            .FirstOrDefault(cancellationToken: cancellationToken)._id;
         var filter = Builders<AppointmentState>.Filter.Eq(x => x.Id, objectState.Id);
         return context.Appointments
             .ReplaceOneAsync(filter, objectState, new ReplaceOptions(), cancellationToken)

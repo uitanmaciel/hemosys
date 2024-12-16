@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace HemoSys.SchedulingService.State.Appointments.Repositories.Models;
 
@@ -7,7 +8,7 @@ public class AppointmentState
 {
     [BsonId]
     [BsonElement("_id")]
-    public Guid _Id { get; set; }
+    public ObjectId _id { get; set; }
     
     [BsonElement("id")]
     [BsonRepresentation(BsonType.String)]
