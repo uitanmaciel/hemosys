@@ -34,7 +34,7 @@ public sealed class AppointmentCreateRequest :
             request!.Donor!.ToCommand(request.Donor),
             request!.Location!.ToCommand(request.Location),
             request.ScheduledDate,
-            Enum.Parse<AppointmentStatusTypes>(request.StatusTypes),
+            AppointmentStatusTypes.New,
             request.LastAppointmentDate,
             request.Notes
         );

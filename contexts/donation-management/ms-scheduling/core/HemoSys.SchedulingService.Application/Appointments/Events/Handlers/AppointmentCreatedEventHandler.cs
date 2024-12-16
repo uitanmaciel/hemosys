@@ -6,10 +6,12 @@ public sealed class AppointmentCreatedEventHandler(IProducer producer) : IReques
 {
     public async Task Handle(AppointmentCreated request, CancellationToken cancellationToken)
     {
-        var @event = request.ToMessage();
+        const string destination = "schedulingevents";
+        const string eventName = "AppointmentCreated";
+        
         await producer.PublishAsync(
-            destination: @event.destination, 
-            eventName: @event.eventType, 
-            message: @event.message);
+            destination: destination, 
+            eventName: eventName, 
+            message: request);
     }
 }

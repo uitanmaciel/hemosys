@@ -7,6 +7,12 @@ public class AppointmentCreateCommandHandler(IAppointmentWriteRepository reposit
     {
         var appointment = request.ToDomain(request);
         appointment.ApplyRulesToCreateAppointment();
+        
+        if(appointment.HasNotifications)
+        {
+            request.AddNotifications(appointment.Notifications);
+            return false;
+        }
 
         var appointmentCreate = await repository.AddAsync(appointment, cancellationToken);
         if(!appointmentCreate)

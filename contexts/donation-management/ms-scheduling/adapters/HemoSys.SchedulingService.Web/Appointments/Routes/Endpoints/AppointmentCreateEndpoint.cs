@@ -1,6 +1,6 @@
 ﻿namespace HemoSys.SchedulingService.Web.Appointments.Routes.Endpoints;
 
-public class AppointmentCreateEndpoint : IEndpoint
+public abstract class AppointmentCreateEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
@@ -13,7 +13,7 @@ public class AppointmentCreateEndpoint : IEndpoint
                     .Select(x => x.Message)
                     .ToList());
             
-            var result = await service.CreateAppointmentAsync(command, default);
+            var result = await service.CreateAppointmentAsync(command, CancellationToken.None);
             
             return !result 
                 ? Result.Failure("Failed to create appointment") 
