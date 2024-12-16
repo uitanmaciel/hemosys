@@ -51,7 +51,7 @@ jobs:
       - name: Create file version
         run: |
           echo ${{ steps.version.outputs.version }} > version.txt
-          echo "::set-output name=version::${{ steps.version.outputs.version }}"
+          echo "{name}={version}" >> $GITHUB_OUTPUT
         if: github.ref == 'refs/heads/dev'
         
       - uses: actions/upload-artifact@v4
@@ -138,16 +138,16 @@ jobs:
           fetch-depth: 0
           
       - uses: github/codeql-action/init@v3
-        name: Initialize CodeQL - ${{ matrix.name }}
+        name: Initialize CodeQL
         with:
-          languages: ${{ matrix.language }}
+          languages: csharp
           build: ${{ matrix.build }}
           
       - uses: github/codeql-action/analyze@v3
-        name: Analyze with CodeQL - ${{ matrix.name }}
+        name: Analyze with CodeQL
         with:
-          languages: ${{ matrix.language }}
-          query: ${{ matrix.query }}
+          languages: csharp
+          query: security-and-quality.qls
           github_token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: ${{ matrix.fail_on_error }}
         env:
