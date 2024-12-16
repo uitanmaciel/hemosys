@@ -110,10 +110,11 @@ jobs:
         with: 
           fetch-depth: 0
           
-      - uses: github/super-linter@v4
+      - uses: github/super-linter@v6
         with:
-          DEFAULT_BRANCH: dev
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_YAML: true
+          DEFAULT_BRANCH: "dev"
+          VALIDATE_ALL_CODEBASE: "false"
+          VALIDATE_YAML: "true"
+          VALIDATE_CSHARP: "true"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     if: github.ref != 'refs/heads/dev'
