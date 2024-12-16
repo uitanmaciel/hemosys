@@ -6,5 +6,6 @@ public enum AppointmentStatusTypes
     Confirmed,
     Canceled,
     Completed,
-    Scheduled
+    Scheduled,
+    Deleted
 }

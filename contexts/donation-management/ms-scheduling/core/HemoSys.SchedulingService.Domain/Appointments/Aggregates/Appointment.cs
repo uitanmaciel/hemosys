@@ -44,20 +44,30 @@ public sealed class Appointment : AggregateRoot
     
     public void ApplyRulesToUpdateAppointment()
     {
-        Donor.Attach();
-        ValidationsForUpdateAppointment();
+        ValidationsToUpdateAppointment();
         if(HasNotifications) return;
     }
 
     public void ApplyRulesToDeleteAppointment()
     {
-        ValidationsForDeleteAppointment();
+        ValidationsToDeleteAppointment();
         if(HasNotifications) return;
+        StatusTypes = AppointmentStatusTypes.Deleted;
+    }
+
+    public void ApplyRulesToComplete()
+    {
+        ValidationToCompleteAppointment();
+        if (HasNotifications) return;
+        StatusTypes = AppointmentStatusTypes.Completed;
     }
     
-    public void Complete() => StatusTypes = AppointmentStatusTypes.Completed;
-    
-    public void Cancel() => StatusTypes = AppointmentStatusTypes.Canceled;
+    public void ApplyRulesToCancel()
+    {
+        ValidationToCancelAppointment();
+        if (HasNotifications) return;
+        StatusTypes = AppointmentStatusTypes.Canceled;
+    }
 
     public int CalculateDaysSinceLastDonation()
     {
@@ -89,13 +99,16 @@ public sealed class Appointment : AggregateRoot
         ValidationsInherit();
     }
 
-    private void ValidationsForUpdateAppointment()
+    private void ValidationsToUpdateAppointment()
     {
         AddNotifications(new ValidationRules<Appointment>()
             .IsGuidNotEmpty(nameof(Id), Id)
         );
         
-        if(StatusTypes == AppointmentStatusTypes.Completed)
+        if(StatusTypes is 
+           AppointmentStatusTypes.Completed or 
+           AppointmentStatusTypes.Deleted or
+           AppointmentStatusTypes.Canceled)
             AddNotification(
                 key: "Status", 
                 message: "The appointment is already completed.");
@@ -103,9 +116,25 @@ public sealed class Appointment : AggregateRoot
         ValidationsInherit();
     }
     
-    private void ValidationsForDeleteAppointment()
+    private void ValidationsToDeleteAppointment()
     {
         if(StatusTypes is AppointmentStatusTypes.Canceled or AppointmentStatusTypes.Completed)
+            AddNotification(
+                key: "Status", 
+                message: "The appointment is already canceled.");
+    }
+    
+    private void ValidationToCompleteAppointment()
+    {
+        if(StatusTypes is AppointmentStatusTypes.Canceled or AppointmentStatusTypes.Deleted)
+            AddNotification(
+                key: "Status", 
+                message: "The appointment is already completed.");
+    }
+    
+    private void ValidationToCancelAppointment()
+    {
+        if(StatusTypes is AppointmentStatusTypes.Completed or AppointmentStatusTypes.Deleted)
             AddNotification(
                 key: "Status", 
                 message: "The appointment is already canceled.");
@@ -113,7 +142,6 @@ public sealed class Appointment : AggregateRoot
 
     private void ValidationsInherit()
     {
-        Donor.Attach();
         AddNotifications(Donor.Notifications);
         AddNotifications(Location.Notifications);
     }
