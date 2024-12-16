@@ -19,12 +19,12 @@ public class AppointmentCommandService(ISender mediator) : IAppointmentCommandSe
         return await mediator.Send(command, cancellationToken);
     }
 
-    public Task CancelAppointmentAsync(AppointmentCancelCommand command, CancellationToken cancellationToken)
+    public async Task<bool> CancelAppointmentAsync(AppointmentCancelCommand command, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await mediator.Send(command, cancellationToken);
     }
 
-    public Task CompleteAppointmentAsync(AppointmentCompleteCommand command, CancellationToken cancellationToken)
+    public async Task<bool> CompleteAppointmentAsync(AppointmentCompleteCommand command, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

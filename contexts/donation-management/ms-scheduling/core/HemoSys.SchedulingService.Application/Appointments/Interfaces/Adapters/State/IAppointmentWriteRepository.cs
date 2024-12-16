@@ -2,6 +2,6 @@
 
 public interface IAppointmentWriteRepository : IWriteRepository<Appointment>
 {
-    Task CancelAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken);
-    Task CompleteAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken);
+    Task<bool> CancelAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken);
+    Task<bool> CompleteAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken);
 }

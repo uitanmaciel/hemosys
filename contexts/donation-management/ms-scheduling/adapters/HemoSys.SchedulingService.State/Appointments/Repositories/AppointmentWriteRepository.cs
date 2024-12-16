@@ -23,40 +23,40 @@ public sealed class AppointmentWriteRepository(AppointmentDbContext context) : I
         }
     }
 
-    public Task<bool> UpdateAsync(Appointment entity, CancellationToken cancellationToken)
+    public async Task<bool> UpdateAsync(Appointment entity, CancellationToken cancellationToken)
     {
         var objectState = new AppointmentMapper().ToState(entity);
         objectState._id = context.Appointments
             .Find(x => x.Id == objectState.Id)
             .FirstOrDefault(cancellationToken: cancellationToken)._id;
         var filter = Builders<AppointmentState>.Filter.Eq(x => x.Id, objectState.Id);
-        return context.Appointments
+        return await context.Appointments
             .ReplaceOneAsync(filter, objectState, new ReplaceOptions(), cancellationToken)
             .ContinueWith(task => task.Result.IsAcknowledged, cancellationToken);
     }
 
-    public Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         var filter = Builders<AppointmentState>.Filter.Eq(x => x.Id, id);
-        return context.Appointments
+        return await context.Appointments
             .DeleteOneAsync(filter, cancellationToken)
             .ContinueWith(task => task.Result.IsAcknowledged, cancellationToken);
     }
 
-    public Task CancelAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken)
+    public async Task<bool> CancelAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken)
     {
         var filter = Builders<AppointmentState>.Filter.Eq(x => x.Id, appointmentId);
         var update = Builders<AppointmentState>.Update.Set(x => x.Status, AppointmentStatusTypes.Canceled.ToString());
-        return context.Appointments
+        return await context.Appointments
             .UpdateOneAsync(filter, update, new UpdateOptions(), cancellationToken)
             .ContinueWith(task => task.Result.IsAcknowledged, cancellationToken);
     }
 
-    public Task CompleteAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken)
+    public async Task<bool> CompleteAppointmentAsync(Guid appointmentId, CancellationToken cancellationToken)
     {
         var filter = Builders<AppointmentState>.Filter.Eq(x => x.Id, appointmentId);
         var update = Builders<AppointmentState>.Update.Set(x => x.Status, AppointmentStatusTypes.Completed.ToString());
-        return context.Appointments
+        return await context.Appointments
             .UpdateOneAsync(filter, update, new UpdateOptions(), cancellationToken)
             .ContinueWith(task => task.Result.IsAcknowledged, cancellationToken);
     }

@@ -23,6 +23,10 @@ public static class RoutesGroups
         endpoints.MapGroup("api/v1/appointment")
             .WithTags("Appointments")
             .MapEndpoint<AppointmentDeleteEndpoint>();
+        
+        endpoints.MapGroup("api/v1/appointment/cancel")
+            .WithTags("Appointments")
+            .MapEndpoint<AppointmentCancelEndpoint>();
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
