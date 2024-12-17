@@ -3,7 +3,7 @@ using HemoSys.SchedulingService.Domain.Appointments.Entities;
 using HemoSys.SchedulingService.Domain.Appointments.Enums;
 using HemoSys.SchedulingService.Domain.Appointments.ValueObjects;
 
-namespace HemoSys.SchedulingService.Tests.UnitTests.ForDomain;
+namespace HemoSys.SchedulingService.Tests;
 
 public static class AppointmentTestFactory
 {
