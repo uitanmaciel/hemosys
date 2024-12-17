@@ -26,6 +26,6 @@ public class AppointmentCommandService(ISender mediator) : IAppointmentCommandSe
 
     public async Task<bool> CompleteAppointmentAsync(AppointmentCompleteCommand command, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await mediator.Send(command, cancellationToken);
     }
 }
