@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{42F680F1-4ABC-4548-A793-D0296E080896}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared-kernel", "shared-kernel", "{DBC150F3-2048-4444-99C2-D09B7547F5A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SharedKernel", "src\shared-kernel\HemoSys.SharedKernel\HemoSys.SharedKernel.csproj", "{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoSys.SharedKernel.Stream", "src\shared-kernel\HemoSys.SharedKernel.Stream\HemoSys.SharedKernel.Stream.csproj", "{6F709752-9792-4448-8FD3-1EB00E559AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F709752-9792-4448-8FD3-1EB00E559AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F709752-9792-4448-8FD3-1EB00E559AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F709752-9792-4448-8FD3-1EB00E559AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F709752-9792-4448-8FD3-1EB00E559AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBC150F3-2048-4444-99C2-D09B7547F5A2} = {42F680F1-4ABC-4548-A793-D0296E080896}
+		{20F99D5B-710D-48BC-8BA8-E50EC3C55F0E} = {DBC150F3-2048-4444-99C2-D09B7547F5A2}
+		{6F709752-9792-4448-8FD3-1EB00E559AFB} = {DBC150F3-2048-4444-99C2-D09B7547F5A2}
+	EndGlobalSection
+EndGlobal
