@@ -1,0 +1,14 @@
+﻿global using MediatR;
+global using HemoSys.SharedKernel;
+global using HemoSys.SharedKernel.State;
+global using HemoSys.SharedKernel.Stream;
+global using DevSource.Stack.Notifications;
+global using HemoSys.SchedulingService.Domain.Appointments.Entities;
+global using HemoSys.SchedulingService.Domain.Appointments.Aggregates;
+global using HemoSys.SchedulingService.Application.Appointments.Events;
+global using HemoSys.SchedulingService.Domain.Appointments.ValueObjects;
+global using HemoSys.SchedulingService.Application.Appointments.Queries;
+global using HemoSys.SchedulingService.Application.Appointments.Commands;
+global using HemoSys.SchedulingService.Application.Appointments.Queries.Models;
+global using HemoSys.SchedulingService.Application.Appointments.Interfaces.Services;
+global using HemoSys.SchedulingService.Application.Appointments.Interfaces.Adapters.State;
