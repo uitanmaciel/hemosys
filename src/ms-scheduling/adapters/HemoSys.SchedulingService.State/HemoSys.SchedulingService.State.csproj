@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\shared-kernel\HemoSys.SharedKernel\HemoSys.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\core\HemoSys.SchedulingService.Application\HemoSys.SchedulingService.Application.csproj" />
+    <ProjectReference Include="..\..\core\HemoSys.SchedulingService.Domain\HemoSys.SchedulingService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.30.0" />
+  </ItemGroup>
+
+</Project>

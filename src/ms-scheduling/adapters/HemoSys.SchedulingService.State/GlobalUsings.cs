@@ -1,0 +1,9 @@
+﻿global using MongoDB.Bson;
+global using MongoDB.Driver;
+global using MongoDB.Bson.Serialization.Attributes;
+global using HemoSys.SchedulingService.State.Appointments.DataContexts;
+global using HemoSys.SchedulingService.Domain.Appointments.ValueObjects;
+global using HemoSys.SchedulingService.State.Appointments.Repositories.Models;
+global using HemoSys.SchedulingService.Application.Appointments.Interfaces.Adapters.State;
+global using HemoSys.SchedulingService.Domain.Appointments.Aggregates;
+global using HemoSys.SchedulingService.State.Appointments.Repositories.Mappers;
