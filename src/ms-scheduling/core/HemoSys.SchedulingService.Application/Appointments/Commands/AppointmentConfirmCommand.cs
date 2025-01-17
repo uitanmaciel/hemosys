@@ -10,7 +10,7 @@ public class AppointmentConfirmCommand :
     IRequest<bool>
 {
     public Guid Id { get; set; }
-    public AppointmentStatusTypes Status { get; set; }
+    public string Status { get; set; } = string.Empty;
     
     public Appointment ToDomain(AppointmentConfirmCommand? command)
         => command is null
@@ -20,7 +20,7 @@ public class AppointmentConfirmCommand :
                 new Donor(),
                 new DonationCenter(),
                 default,
-                command.Status,
+                Enum.Parse<AppointmentStatusTypes>(command.Status),
                 default);
 
     public IList<Appointment> ToDomain(IList<AppointmentConfirmCommand> commands)

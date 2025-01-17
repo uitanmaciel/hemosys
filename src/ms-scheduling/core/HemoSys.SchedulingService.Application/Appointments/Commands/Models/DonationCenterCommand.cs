@@ -4,6 +4,8 @@ namespace HemoSys.SchedulingService.Application.Appointments.Commands.Models;
 
 public record DonationCenterCommand(Guid Id, string Name) : ICommandToDomain<DonationCenterCommand, DonationCenter>
 {
+    public DonationCenterCommand() : this(Guid.Empty, string.Empty) { }
+    
     public DonationCenter ToDomain(DonationCenterCommand? command)
         => command is null
         ? new DonationCenter()

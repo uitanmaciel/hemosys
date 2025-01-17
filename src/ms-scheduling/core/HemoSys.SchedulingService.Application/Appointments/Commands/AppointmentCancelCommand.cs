@@ -1,6 +1,4 @@
-﻿using HemoSys.SchedulingService.Domain.Appointments.Entities;
-using HemoSys.SchedulingService.Domain.Appointments.Enums;
-using HemoSys.SchedulingService.Domain.Appointments.ValueObjects;
+﻿using HemoSys.SchedulingService.Domain.Appointments.Enums;
 
 namespace HemoSys.SchedulingService.Application.Appointments.Commands;
 
@@ -10,7 +8,7 @@ public class AppointmentCancelCommand :
     IRequest<bool>
 {
     public Guid Id { get; set; }
-    public AppointmentStatusTypes Status { get; set; }
+    public string Status { get; set; } = string.Empty;
     
     public Appointment ToDomain(AppointmentCancelCommand? command)
         => command is null
@@ -20,7 +18,7 @@ public class AppointmentCancelCommand :
                 new Donor(),
                 new DonationCenter(),
                 default,
-                command.Status,
+                Enum.Parse<AppointmentStatusTypes>(command.Status),
                 default);
 
     public IList<Appointment> ToDomain(IList<AppointmentCancelCommand> commands)

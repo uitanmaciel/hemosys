@@ -11,8 +11,6 @@ public class AppointmentUpdateCommand :
     public Guid Id { get; set; }
     public DonationCenterCommand DonationCenter { get; set; } = null!;
     public DateTime ScheduleDate { get; set; }
-    public AppointmentStatusTypes Status { get; set; }
-    public DateTime LastDonation { get; set; }
     public IList<NoteCommand>? Notes { get; set; }
     
     public Appointment ToDomain(AppointmentUpdateCommand? command)
@@ -23,8 +21,8 @@ public class AppointmentUpdateCommand :
                 null!,
                 DonationCenter.ToDomain(command.DonationCenter),
                 command.ScheduleDate,
-                command.Status,
-                command.LastDonation,
+                default,
+                default,
                 new NoteCommand().ToDomain(Notes!));
 
     public IList<Appointment> ToDomain(IList<AppointmentUpdateCommand> commands)

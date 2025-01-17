@@ -1,6 +1,4 @@
-﻿using HemoSys.SchedulingService.Domain.Appointments.Entities;
-
-namespace HemoSys.SchedulingService.Application.Appointments.Commands.Models;
+﻿namespace HemoSys.SchedulingService.Application.Appointments.Commands.Models;
 
 public record DonorCommand(
     Guid Id,
@@ -10,6 +8,8 @@ public record DonorCommand(
     string Gender,
     DateTime BirthDate) : ICommandToDomain<DonorCommand, Donor>
 {
+    public DonorCommand() : this(Guid.Empty, string.Empty, string.Empty, 0, string.Empty, DateTime.MinValue) { }
+    
     public Donor ToDomain(DonorCommand? command)
         => command is null
         ? new Donor()
