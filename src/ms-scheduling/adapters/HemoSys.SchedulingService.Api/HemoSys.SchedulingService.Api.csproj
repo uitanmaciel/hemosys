@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevSource.Stack.Results" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\shared-kernel\HemoSys.SharedKernel.Stream\HemoSys.SharedKernel.Stream.csproj" />
+    <ProjectReference Include="..\..\..\shared-kernel\HemoSys.SharedKernel\HemoSys.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\core\HemoSys.SchedulingService.Application\HemoSys.SchedulingService.Application.csproj" />
+    <ProjectReference Include="..\..\core\HemoSys.SchedulingService.Domain\HemoSys.SchedulingService.Domain.csproj" />
+    <ProjectReference Include="..\HemoSys.SchedulingService.State\HemoSys.SchedulingService.State.csproj" />
   </ItemGroup>
 
 </Project>
